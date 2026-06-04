@@ -7,17 +7,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private InputActionReference move;
     [SerializeField] private CharacterController cc;
     [SerializeField] private Vector2 inputMoveVector;
+    [SerializeField] private Vector3 moveVelocity;
 
 
-    private float playerSpeed=4f;
+
+    private float playerAcceleration=10f;
+    private float maxSpeed=4f;
 
 
 
     void Update()
     {
         inputMoveVector=move.action.ReadValue<Vector2>();
-        Vector3 moveVector=new Vector3(inputMoveVector.x,0,inputMoveVector.y);
+        Vector3 moveDirection=new Vector3(inputMoveVector.x,0,inputMoveVector.y);
+        moveVelocity=Vector3.Lerp(moveVelocity,moveDirection,5f*Time.deltaTime);
         
-        cc.Move(moveVector*playerSpeed*Time.deltaTime);
+        
+        
+        cc.Move(moveVelocity*maxSpeed*Time.deltaTime);
     }
 }
