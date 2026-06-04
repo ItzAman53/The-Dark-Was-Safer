@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "GameJam1.slnx"
+    "dotnet.defaultSolution": "LightsSuck.slnx"
 }
