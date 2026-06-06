@@ -5,13 +5,16 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private InputActionReference move;
+    [SerializeField] private InputActionReference look;
     [SerializeField] private CharacterController cc;
     [SerializeField] private Vector2 inputMoveVector;
     [SerializeField] private Vector3 moveVelocity;
+    [SerializeField] private GameObject flashLight;
+    
 
 
 
-    private float playerAcceleration=10f;
+    
     private float maxSpeed=4f;
 
 
@@ -21,9 +24,6 @@ public class PlayerMovement : MonoBehaviour
         inputMoveVector=move.action.ReadValue<Vector2>();
         Vector3 moveDirection=new Vector3(inputMoveVector.x,0,inputMoveVector.y);
         moveVelocity=Vector3.Lerp(moveVelocity,moveDirection,5f*Time.deltaTime);
-        
-        
-        
         cc.Move(moveVelocity*maxSpeed*Time.deltaTime);
     }
 }
