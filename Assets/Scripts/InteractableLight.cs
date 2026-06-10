@@ -4,7 +4,7 @@ public class InteractableLight : MonoBehaviour
 {
 
     
-    private float maxInteractionTime=2f;
+    [SerializeField] private float maxInteractionTime=2f;
     [SerializeField] private float interactionTime=0f;
     private bool isLit=false;
     private float decayRate=3f;
