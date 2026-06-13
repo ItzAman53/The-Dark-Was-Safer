@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class InteractableLight : MonoBehaviour
+public class InteractableEgg : MonoBehaviour
 {
 
     
@@ -8,6 +9,7 @@ public class InteractableLight : MonoBehaviour
     [SerializeField] private float interactionTime=0f;
     private bool isLit=false;
     private float decayRate=3f;
+    [SerializeField] private GameObject enemyPrefab;
     
     void OnTriggerStay(Collider other)
     {
@@ -36,6 +38,7 @@ public class InteractableLight : MonoBehaviour
 
         if (interactionTime >= maxInteractionTime)
         {
+            Instantiate(enemyPrefab,transform.position,transform.rotation);
             Destroy(gameObject);
         }
     }
