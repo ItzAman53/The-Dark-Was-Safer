@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class MouseFollowRotation : MonoBehaviour
 {
     [SerializeField] private Camera cam;
+    [SerializeField] private PlayerMovement pm;
     [SerializeField] private LayerMask layer;
     
     [SerializeField] private Vector3 target;
@@ -37,8 +38,13 @@ public class MouseFollowRotation : MonoBehaviour
             }
 
             Quaternion targetRotation = Quaternion.LookRotation(target-transform.position);
+            if (!pm.TurnOnHorizontalMovement)
+            {
+                rotationSpeed=0;
+            }
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation,targetRotation,rotationSpeed * Time.deltaTime);
+            
         }
     }
 }
