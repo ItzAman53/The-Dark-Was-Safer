@@ -6,6 +6,7 @@ public class LanternSway : MonoBehaviour
     [SerializeField] private float swaySpeed = 6f;
     [SerializeField] private float moveThreshold = 0.1f;
 
+
     private Vector3 lastPosition;
     private Quaternion initialRotation;
 

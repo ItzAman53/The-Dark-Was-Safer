@@ -42,6 +42,10 @@ public class MouseFollowRotation : MonoBehaviour
             {
                 rotationSpeed=0;
             }
+            else
+            {
+                rotationSpeed=720f;
+            }
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation,targetRotation,rotationSpeed * Time.deltaTime);
             

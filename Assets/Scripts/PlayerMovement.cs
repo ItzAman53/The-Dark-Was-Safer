@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController cc;
     [SerializeField] private Vector2 inputMoveVector;
     [SerializeField] private Vector3 moveVelocity;
-    [SerializeField] private GameObject flashLight;
-    [SerializeField] private Animator anim;
+    
+    public Animator anim;
+    
     public bool TurnOnHorizontalMovement=false;
     
 
