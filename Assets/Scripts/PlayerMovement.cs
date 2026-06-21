@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 moveVelocity;
     
     public Animator anim;
+    public int TreasureCount=0;
     
     public bool TurnOnHorizontalMovement=false;
     
