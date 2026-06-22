@@ -7,6 +7,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float speed = 0.25f;
     [SerializeField] private Renderer enemyRenderer;
     [SerializeField] private Renderer glowingChildRenderer;
+    [SerializeField] private Renderer meshRenderer;
+
+    [SerializeField] private Material freezeMaterial;
+    [SerializeField] private Material normalMaterial;
 
     [Header("Freeze")]
     [SerializeField] private float maxInteractionTime = 2f;
@@ -71,16 +75,18 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator FreezeEnemy()
     {
         isFrozen = true;
+
+        meshRenderer.material = freezeMaterial;
+
         enemyRenderer.material.color = Color.cyan;
-        glowingChildRenderer.material=freezeGlow;
-        // TODO:
-        // Change material color
-        // Play VFX
-        // Play freeze sound
+        glowingChildRenderer.material = freezeGlow;
 
         yield return new WaitForSeconds(freezeTime);
+
+        meshRenderer.material = normalMaterial;
+
         enemyRenderer.material.color = Color.white;
-        glowingChildRenderer.material=normalGlow;
+        glowingChildRenderer.material = normalGlow;
 
         interactionTime = 0f;
         isFrozen = false;
@@ -100,5 +106,14 @@ public class EnemyMovement : MonoBehaviour
         {
             isLit = false;
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+            return;
+        Debug.Log("dead");
+        Level3ResetManager.Instance.ResetLevel(other.transform);
+
+        Destroy(gameObject);
     }
 }

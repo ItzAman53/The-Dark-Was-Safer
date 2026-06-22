@@ -10,6 +10,10 @@ public class InteractableEgg : MonoBehaviour
     private bool isLit=false;
     private float decayRate=3f;
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private PlantWiggle eggWiggle;
+    [SerializeField] private GameObject hatchEffect;
+
+    private bool startedWiggle = false; 
     
     void OnTriggerStay(Collider other)
     {
@@ -35,9 +39,15 @@ public class InteractableEgg : MonoBehaviour
             interactionTime-=Time.deltaTime*decayRate;
             interactionTime=Mathf.Max(0,interactionTime);
         }
+        if (!startedWiggle && interactionTime >= maxInteractionTime * 0.5f)
+        {
+            startedWiggle = true;
+            eggWiggle.IsWiggling = true;
+        }
 
         if (interactionTime >= maxInteractionTime)
         {
+            Instantiate(hatchEffect, transform.position, Quaternion.identity);
             Instantiate(enemyPrefab,transform.position,transform.rotation);
             Destroy(gameObject);
         }

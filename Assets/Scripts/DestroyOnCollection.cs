@@ -3,7 +3,7 @@ using UnityEngine;
 public class DestroyOnCollection : MonoBehaviour
 {
     [SerializeField]private GameObject treasure;
-    [SerializeField]private PlayerMovement pm;
+    
     [SerializeField]private GameObject collectEffect;
     
     
@@ -13,7 +13,7 @@ public class DestroyOnCollection : MonoBehaviour
         {
             if (gameObject.CompareTag("Treasure"))
             {
-                pm.TreasureCount++;
+                other.GetComponent<PlayerMovement>().TreasureCount++;
             }
             Instantiate(collectEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
