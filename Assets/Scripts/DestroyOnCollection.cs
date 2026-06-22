@@ -4,6 +4,7 @@ public class DestroyOnCollection : MonoBehaviour
 {
     [SerializeField]private GameObject treasure;
     [SerializeField]private PlayerMovement pm;
+    [SerializeField]private GameObject collectEffect;
     
     
     void OnTriggerEnter(Collider other)
@@ -14,7 +15,7 @@ public class DestroyOnCollection : MonoBehaviour
             {
                 pm.TreasureCount++;
             }
-            
+            Instantiate(collectEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
 
         }

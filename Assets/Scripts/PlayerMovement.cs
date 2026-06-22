@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     
-    private float maxSpeed=4f;
+    [SerializeField]private  float maxSpeed=4f;
 
 
 
