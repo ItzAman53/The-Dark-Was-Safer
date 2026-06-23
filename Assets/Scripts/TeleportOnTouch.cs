@@ -14,6 +14,7 @@ public class TeleportOnTouch : MonoBehaviour
     [SerializeField] private GameObject Lantern;
     [SerializeField] private GameObject Lights;
     [SerializeField] private Light LanternSpotLight;
+
     private bool isTeleporting;
     
     
@@ -34,6 +35,14 @@ public class TeleportOnTouch : MonoBehaviour
         isTeleporting = true;
 
         fadeScreen.StartCoroutine(fadeScreen.Fade(2f));
+        if (gameObject.CompareTag("Level3"))
+        {
+            pm.isLevel4=true;
+        }
+        if (gameObject.CompareTag("Level4"))
+        {
+            pm.GetComponent<CharacterController>().stepOffset=1.3f;
+        }
 
         yield return new WaitForSeconds(0.25f);
 

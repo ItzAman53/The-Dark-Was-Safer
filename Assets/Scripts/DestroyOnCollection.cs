@@ -7,6 +7,7 @@ public class DestroyOnCollection : MonoBehaviour
     [SerializeField]private GameObject collectEffect;
     
     
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -14,6 +15,10 @@ public class DestroyOnCollection : MonoBehaviour
             if (gameObject.CompareTag("Treasure"))
             {
                 other.GetComponent<PlayerMovement>().TreasureCount++;
+                if (other.GetComponent<PlayerMovement>().isLevel4)
+                {
+                    other.GetComponent<PlayerMovement>().Level4TreasureCount++;
+                }
             }
             Instantiate(collectEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);

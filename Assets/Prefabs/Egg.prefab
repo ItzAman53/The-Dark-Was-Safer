@@ -112,7 +112,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.82
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1269451561489005471
 MonoBehaviour:
@@ -129,6 +129,8 @@ MonoBehaviour:
   maxInteractionTime: 3
   interactionTime: 0
   enemyPrefab: {fileID: 3457704132051708935, guid: c4471a09a70dfd044bd0561eb944cdb0, type: 3}
+  eggWiggle: {fileID: 0}
+  hatchEffect: {fileID: 0}
 --- !u!1001 &7860782394679968777
 PrefabInstance:
   m_ObjectHideFlags: 0

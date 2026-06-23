@@ -35,8 +35,11 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
     {
         HandleFreezeMeter();
-
-        if (!isFrozen)
+        if (gameObject.CompareTag("FinalRun") && player.GetComponent<PlayerMovement>().IsEscapeRunning)
+        {
+            FollowPlayer();
+        }
+        if (!gameObject.CompareTag("FinalRun") && !isFrozen)
         {
             FollowPlayer();
         }
@@ -109,11 +112,27 @@ public class EnemyMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
+        if (!player.GetComponent<PlayerMovement>().IsEscapeRunning)
+        {
+            if (!other.CompareTag("Player"))
             return;
-        Debug.Log("dead");
-        Level3ResetManager.Instance.ResetLevel(other.transform);
+            Debug.Log("dead");
+            if (gameObject.CompareTag("Level3"))
+            {
+                Level3ResetManager.Instance.ResetLevel(other.transform);
+            }
+            if (gameObject.CompareTag("Level4"))
+            {
+                Level4ResetManager.Instance.ResetLevel(other.transform);
+            }
+            
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+        if (player.GetComponent<PlayerMovement>().IsEscapeRunning)
+        {
+            isLit=true;
+        }
+        
     }
 }

@@ -7,14 +7,25 @@ public class InteractableLightVines : MonoBehaviour
     [SerializeField] private float maxInteractionTime=2f;
     [SerializeField] private float interactionTime=0f;
     [SerializeField] private GameObject destroyEffect;
-    [SerializeField] private PlantWiggle wiggle;
+    private PlantWiggle wiggle;
     private bool startedWiggle = false;
+
 
     private bool isLit=false;
     private float decayRate=3f;
     
+    void Start()
+    {
+        wiggle=GetComponent<PlantWiggle>();
+    }
+    
     void OnTriggerStay(Collider other)
     {
+        if (other.CompareTag("Player") && other.GetComponent<PlayerMovement>().IsEscapeRunning)
+        {
+            isLit=true;
+            interactionTime+=Time.deltaTime;
+        }
         if (other.CompareTag("LightCollider"))
         {
             isLit=true;

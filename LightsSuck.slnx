@@ -1,6 +1,6 @@
 ﻿<Solution>
   <Project Path="Unity.Timeline.csproj" />
-  <Project Path="Unity.Services.Core.Device.csproj" />
+  <Project Path="Unity.InputSystem.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.csproj" />
   <Project Path="Unity.Services.Core.Internal.csproj" />
   <Project Path="Unity.ProBuilder.csproj" />
@@ -17,7 +17,6 @@
   <Project Path="Unity.ProBuilder.Csg.csproj" />
   <Project Path="Unity.Services.Analytics.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
-  <Project Path="Unity.InputSystem.csproj" />
   <Project Path="Unity.Searcher.Editor.csproj" />
   <Project Path="Unity.ProBuilder.Editor.csproj" />
   <Project Path="Unity.VisualScripting.Core.csproj" />
@@ -58,6 +57,7 @@
   <Project Path="Unity.Settings.Editor.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
+  <Project Path="Unity.Services.Core.Device.csproj" />
   <Project Path="Unity.Services.Core.Analytics.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
   <Project Path="Unity.Services.Core.Registration.csproj" />

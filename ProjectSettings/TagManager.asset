@@ -6,6 +6,9 @@ TagManager:
   tags:
   - LightCollider
   - Treasure
+  - Level3
+  - Level4
+  - FinalRun
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - Water
   - UI
   - LightCollider
-  - 
+  - Level3
   - 
   - 
   - 
