@@ -5,6 +5,7 @@ public class EndGameTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject whiteImage;
     [SerializeField] private GameObject coinCouhht;
+    [SerializeField] private GameObject button;
     [SerializeField] private TextMeshProUGUI endText;
 
     private bool triggered = false;
@@ -20,6 +21,8 @@ public class EndGameTrigger : MonoBehaviour
         triggered = true;
 
         whiteImage.SetActive(true);
+        button.SetActive(true);
+        Cursor.visible=true;
         coinCouhht.SetActive(false);
 
         endText.gameObject.SetActive(true);

@@ -38,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        
+        if(!cc.enabled)
+    return;
 
         inputMoveVector=move.action.ReadValue<Vector2>();
        
@@ -73,26 +74,26 @@ public class PlayerMovement : MonoBehaviour
         }
      bool isMoving = inputMoveVector.magnitude > 0.1f;
 
-if (isMoving && !IsEscapeRunning)
-{
-    footstepTimer += Time.deltaTime;
-
-    if (footstepTimer >= footstepInterval)
+    if (isMoving && !IsEscapeRunning)
     {
-        footstepTimer = 0f;
+        footstepTimer += Time.deltaTime;
 
-        AudioClip clip =
-            UnityEngine.Random.Range(0, 2) == 0
-            ? footstep1
-            : footstep2;
+        if (footstepTimer >= footstepInterval)
+        {
+            footstepTimer = 0f;
 
-        footstepSource.PlayOneShot(clip);
+            AudioClip clip =
+                UnityEngine.Random.Range(0, 2) == 0
+                ? footstep1
+                : footstep2;
+
+            footstepSource.PlayOneShot(clip);
+        }
     }
-}
-else
-{
-    footstepTimer = footstepInterval;
-}
+    else
+    {
+        footstepTimer = footstepInterval;
+    }
 
 
         

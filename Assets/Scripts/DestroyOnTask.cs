@@ -7,7 +7,7 @@ public class DestroyOnTask : MonoBehaviour
     
     void Update()
     {
-        if (pm.Level4TreasureCount>=8)
+        if (pm.Level4TreasureCount>=7)
         {
             Destroy(gameObject);
         }

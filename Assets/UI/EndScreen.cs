@@ -5,6 +5,6 @@ public class EndScreen : MonoBehaviour
 {
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

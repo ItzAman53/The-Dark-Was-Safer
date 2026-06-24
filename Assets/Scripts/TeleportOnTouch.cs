@@ -14,6 +14,10 @@ public class TeleportOnTouch : MonoBehaviour
     [SerializeField] private GameObject Lantern;
     [SerializeField] private GameObject Lights;
     [SerializeField] private Light LanternSpotLight;
+    [SerializeField] private AudioClip CaveEnter;
+    [SerializeField] private AudioClip CaveAmbience;
+    [SerializeField] private AudioSource Source;
+
 
     private bool isTeleporting;
     
@@ -33,12 +37,26 @@ public class TeleportOnTouch : MonoBehaviour
     {
         if (isTeleporting) yield break;
         isTeleporting = true;
+        CharacterController cc = other.GetComponent<CharacterController>();
 
-        fadeScreen.StartCoroutine(fadeScreen.Fade(2f));
+        if (cc != null)
+            cc.enabled = false;
+        
+
+        fadeScreen.StartCoroutine(fadeScreen.Fade(4f));
+        Source.Stop();
+        Source.clip=CaveEnter;
+        Source.Play();
+        yield return new WaitForSeconds(CaveEnter.length);
+        Source.clip=CaveAmbience;
+        Source.Play();
+
+
         if (gameObject.CompareTag("Level3"))
         {
             pm.isLevel4=true;
         }
+        
         if (gameObject.CompareTag("Level4"))
         {
             pm.GetComponent<CharacterController>().stepOffset=1.3f;
@@ -53,10 +71,7 @@ public class TeleportOnTouch : MonoBehaviour
         Lights.SetActive(false);
         LanternSpotLight.enabled = true;
 
-        CharacterController cc = other.GetComponent<CharacterController>();
-
-        if (cc != null)
-            cc.enabled = false;
+        
 
         Vector3 target = teleportPosition.transform.position;
 
@@ -67,6 +82,7 @@ public class TeleportOnTouch : MonoBehaviour
 
         if (cc != null)
             cc.enabled = true;
+        isTeleporting = false;
 
         Debug.Log("Teleported to: " + target);
     }   

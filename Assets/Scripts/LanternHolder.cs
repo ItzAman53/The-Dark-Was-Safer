@@ -21,6 +21,9 @@ public class LanternHolder : MonoBehaviour
     [SerializeField] private CinemachineBasicMultiChannelPerlin noise;
     [SerializeField] private PlayerMovement pm;
     [SerializeField] private Transform archaeologistModel;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip Rumble;
+    [SerializeField] private AudioClip TitleMusic;
 
 
     private bool activated = false;
@@ -40,6 +43,9 @@ public class LanternHolder : MonoBehaviour
 
     private IEnumerator FinalSequence(Transform player)
     {
+        CharacterController cc = player.GetComponent<CharacterController>();
+        if (cc != null)
+            cc.enabled = false;
         // Place lantern
         playerLantern.SetActive(false);
         lanternOnPedestal.SetActive(true);
@@ -53,7 +59,7 @@ public class LanternHolder : MonoBehaviour
         caveLights.SetActive(true);
 
         // Subtitle
-        yield return StartCoroutine(TypeText("The lantern has found its home."));
+        yield return StartCoroutine(TypeText("The lantern has found its home. The cave was waiting for you"));
 
         yield return new WaitForSeconds(3f);
 
@@ -63,7 +69,7 @@ public class LanternHolder : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // Teleport to escape section
-        CharacterController cc = player.GetComponent<CharacterController>();
+        
 
         
 
@@ -71,24 +77,25 @@ public class LanternHolder : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         
 
-        yield return StartCoroutine(TypeText("You were never the treasure hunter. You were the courier.") );
-        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(TypeText("You were never the treasure hunter. You were the COURIER.") );
+        yield return new WaitForSeconds(1.5f);
+        audioSource.Stop();
+        audioSource.clip=Rumble;
+        audioSource.Play();
         StartRumble();
         subtitleText.text = "";
 
         yield return new WaitForSeconds(1f);
         
-        if (cc != null)
-            cc.enabled = false;
+        
 
         player.position = escapeSpawnPoint.position;
 
-        if (cc != null)
-            cc.enabled = true;
+        
 
         Crystal.SetActive(true);
         SpotLight.enabled=true;
-        yield return StartCoroutine(TypeText("Take what remains. And LEAVE.") );
+        yield return StartCoroutine(TypeText("The cave is collapsing. The shard will protect you. LEAVE.") );
         yield return new WaitForSeconds(2f);
         subtitleText.text = "";
 
@@ -101,10 +108,16 @@ public class LanternHolder : MonoBehaviour
             archaeologistModel.SetParent(player.transform);
             archaeologistModel.rotation = escapeSpawnPoint.rotation;
         }
+        if (cc != null)
+            cc.enabled = true;
 
         anim.SetTrigger("Run");
-        
 
+        yield return new WaitForSeconds(4f);
+
+        audioSource.Stop();
+        audioSource.clip=TitleMusic;
+        audioSource.Play();
 
     }
 

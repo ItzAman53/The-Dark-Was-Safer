@@ -8,6 +8,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Renderer enemyRenderer;
     [SerializeField] private Renderer glowingChildRenderer;
     [SerializeField] private Renderer meshRenderer;
+    [SerializeField] private AudioClip FreezeSound;
+    [SerializeField] private AudioClip ChaseSound;
 
     [SerializeField] private Material freezeMaterial;
     [SerializeField] private Material normalMaterial;
@@ -78,6 +80,10 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator FreezeEnemy()
     {
         isFrozen = true;
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().clip=FreezeSound;
+        GetComponent<AudioSource>().Play();
+
 
         meshRenderer.material = freezeMaterial;
 
@@ -92,6 +98,9 @@ public class EnemyMovement : MonoBehaviour
         glowingChildRenderer.material = normalGlow;
 
         interactionTime = 0f;
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().clip=ChaseSound;
+        GetComponent<AudioSource>().Play();
         isFrozen = false;
     }
 

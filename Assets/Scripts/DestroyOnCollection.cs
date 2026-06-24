@@ -8,6 +8,7 @@ public class DestroyOnCollection : MonoBehaviour
     
     
     
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -20,6 +21,7 @@ public class DestroyOnCollection : MonoBehaviour
                     other.GetComponent<PlayerMovement>().Level4TreasureCount++;
                 }
             }
+            
             Instantiate(collectEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
 
