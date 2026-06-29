@@ -17,7 +17,7 @@ public class LeverPuzzle : MonoBehaviour
     [SerializeField] private float rotateSpeed = 180f;
     private static int activatedLevers = 0;
 
-    [SerializeField] private GameObject vines;
+    [SerializeField] private GameObject vinesParent;
 
     private bool activated = false;
 
@@ -75,7 +75,12 @@ public class LeverPuzzle : MonoBehaviour
 
         if (activatedLevers == 3)
         {
-            vines.SetActive(false); // or StartCoroutine(BurnVines());
+            InteractableLightVines[] vines = vinesParent.GetComponentsInChildren<InteractableLightVines>();
+
+            foreach (InteractableLightVines vine in vines)
+            {
+                vine.BurnByPuzzle();
+            }
         }
     }
 }

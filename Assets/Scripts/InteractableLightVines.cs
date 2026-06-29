@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class InteractableLightVines : MonoBehaviour
 {
@@ -63,5 +64,23 @@ public class InteractableLightVines : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+
+    public void BurnByPuzzle()
+    {
+        if (startedWiggle) return;
+
+        startedWiggle = true;
+        wiggle.IsWiggling = true;
+
+        StartCoroutine(BurnRoutine());
+    }
+
+    private IEnumerator BurnRoutine()
+    {
+        yield return new WaitForSeconds(maxInteractionTime * 0.5f);
+
+        Instantiate(destroyEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

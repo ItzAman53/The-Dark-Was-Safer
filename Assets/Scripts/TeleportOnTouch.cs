@@ -12,6 +12,7 @@ public class TeleportOnTouch : MonoBehaviour
     [SerializeField] private FadeScreen fadeScreen;
     [SerializeField] private PlayerMovement pm;
     [SerializeField] private GameObject Lantern;
+    [SerializeField] private GameObject Flashlight;
     [SerializeField] private GameObject Lights;
     [SerializeField] private Light LanternSpotLight;
     [SerializeField] private AudioClip CaveEnter;
@@ -67,9 +68,15 @@ public class TeleportOnTouch : MonoBehaviour
         pm.TurnOnHorizontalMovement = true;
         pm.anim.SetBool("isLantern", true);
 
-        Lantern.SetActive(true);
-        Lights.SetActive(false);
-        LanternSpotLight.enabled = true;
+        if (gameObject.CompareTag("Level0"))
+        {
+            Lantern.SetActive(false);
+            Flashlight.SetActive(true);
+            Lights.SetActive(false);
+            LanternSpotLight.enabled = true;
+        }
+
+        
 
         
 
