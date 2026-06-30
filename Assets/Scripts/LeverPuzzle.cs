@@ -15,7 +15,7 @@ public class LeverPuzzle : MonoBehaviour
     [Header("Rotation")]
     [SerializeField] private float targetXRotation = 50f;
     [SerializeField] private float rotateSpeed = 180f;
-    private static int activatedLevers = 0;
+    public static int activatedLevers = 0;
 
     [SerializeField] private GameObject vinesParent;
 

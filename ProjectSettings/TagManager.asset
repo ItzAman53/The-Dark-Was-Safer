@@ -10,6 +10,9 @@ TagManager:
   - Level4
   - FinalRun
   - Level0
+  - Level1
+  - Level2
+  - LevelLantern
   layers:
   - Default
   - TransparentFX

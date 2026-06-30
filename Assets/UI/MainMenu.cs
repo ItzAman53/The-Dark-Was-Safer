@@ -35,21 +35,21 @@ public class MainMenu : MonoBehaviour
         storyText.text += "\n\n";
 
         yield return StartCoroutine(TypeText(
-            "The cave was rumored to hold treasures untouched for centuries."));
+            "Legends speak of an ancient magical lantern hidden deep within these forgotten caves."));
 
         yield return new WaitForSeconds(1f);
 
         storyText.text += "\n\n";
 
         yield return StartCoroutine(TypeText(
-            "Most who entered never returned."));
+            "Your mission is simple: recover it and return it to the museum."));
 
         yield return new WaitForSeconds(1f);
 
         storyText.text += "\n\n";
 
         yield return StartCoroutine(TypeText(
-            "You came anyway."));
+            "What could possibly go wrong?"));
 
         yield return new WaitForSeconds(2f);
 

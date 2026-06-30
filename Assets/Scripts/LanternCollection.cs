@@ -15,6 +15,7 @@ public class LanternCollection : MonoBehaviour
     [SerializeField] private GameObject playerLantern;
     [SerializeField] private Light lanternLight;
     [SerializeField] private GameObject areaLights;
+    [SerializeField] private GameObject conicalLightCollider;
 
     [Header("World")]
     [SerializeField] private GameObject entranceRocks;
@@ -26,7 +27,7 @@ public class LanternCollection : MonoBehaviour
     [SerializeField] private AudioClip rumble;
 
     [Header("Timings")]
-    [SerializeField] private float pauseBeforeRumble = 6f;
+    [SerializeField] private float pauseBeforeRumble = 4f;
     [SerializeField] private float rumbleDuration = 4f;
     [SerializeField] private TextMeshProUGUI subtitleText;
 
@@ -46,6 +47,7 @@ public class LanternCollection : MonoBehaviour
 
     IEnumerator CollectionSequence()
     {
+        
         // Hide collectible
         GetComponent<Collider>().enabled = false;
 
@@ -53,13 +55,17 @@ public class LanternCollection : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
-        yield return new WaitForSeconds(pauseBeforeRumble);
-
         // Freeze player
         CharacterController cc = player.GetComponent<CharacterController>();
 
         cc.enabled = false;
+        StartCoroutine(TypeText("Wow that easy?"));
+        yield return new WaitForSeconds(2f);
+        subtitleText.text = "";
+
+        yield return new WaitForSeconds(pauseBeforeRumble);
+
+        
 
         
 
@@ -119,6 +125,7 @@ public class LanternCollection : MonoBehaviour
 
         // Unfreeze player
         cc.enabled = true;
+        conicalLightCollider.SetActive(true);
 
         Destroy(gameObject);
     }

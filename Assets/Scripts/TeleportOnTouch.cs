@@ -18,6 +18,7 @@ public class TeleportOnTouch : MonoBehaviour
     [SerializeField] private AudioClip CaveEnter;
     [SerializeField] private AudioClip CaveAmbience;
     [SerializeField] private AudioSource Source;
+    [SerializeField] private JournalUI journal;
 
 
     private bool isTeleporting;
@@ -74,7 +75,29 @@ public class TeleportOnTouch : MonoBehaviour
             Flashlight.SetActive(true);
             Lights.SetActive(false);
             LanternSpotLight.enabled = true;
+            journal.AddEntry("I've entered the cave. The air feels strangely still...Let's find the lantern and get out.");
         }
+        if (gameObject.CompareTag("Level1"))
+        {
+            
+            journal.AddEntry("The amount of treasure left behind is unsettling...\nAlmost as if no one ever managed to leave with it.");
+        }
+        if (gameObject.CompareTag("LevelLantern"))
+        {
+            
+            journal.AddEntry("The moment I took the lantern, the cave sealed itself.\nFlashlight died...\nGotta find another way out.");
+        }
+        if (gameObject.CompareTag("Level2"))
+        {
+            
+            journal.AddEntry("The lantern's light burns through the strange vines.\nThey're unlike any plant I've ever seen...\nAlmost as if they're alive.");
+        }
+        if (gameObject.CompareTag("Level3"))
+        {
+            
+            journal.AddEntry("The creatures only appeared after I started carrying the lantern.\nThat can't be a coincidence.\nThough the lantern also freezes them.");
+        }
+
 
         
 

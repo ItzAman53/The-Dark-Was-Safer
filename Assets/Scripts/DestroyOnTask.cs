@@ -12,7 +12,7 @@ public class DestroyOnTask : MonoBehaviour
             Destroy(gameObject);
         }
 
-        else if (!gameObject.CompareTag("Level4") && pm.TreasureCount >= 12)
+        else if (!gameObject.CompareTag("Level4") && pm.TreasureCount >= 8)
         {
             Destroy(gameObject);
         }
