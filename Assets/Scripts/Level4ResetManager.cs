@@ -43,6 +43,7 @@ public class Level4ResetManager : MonoBehaviour
         }
 
         SpawnLevelObjects();
+        player.GetComponent<PlayerMovement>().Level4TreasureCount=0;
 
         CharacterController cc =
             player.GetComponent<CharacterController>();
